@@ -1,14 +1,18 @@
 env:
     MANIFEST: https://github.com/PixelExperience/manifest.git -b eleven-plus
-    DEVICE: miatoll
-    OEM: xiaomi
-    DT_LINK: https://github.com/PixelExperience-Devices/device_xiaomi_miatoll.git
+    DEVICE: CPH2381
+    OEM: oneplus
+    DT_LINK: https://github.com/sungsong85/lineage_CPH2381.git
     DT_PATH: device/$OEM/$DEVICE
-    VT_LINK: https://gitlab.pixelexperience.org/android/vendor-blobs/vendor_xiaomi_miatoll.git
+    VT_LINK: https://github.com/sungsong85/vendor_oneplus_oscar.git
     VT_PATH: vendor/$OEM/$DEVICE
-    KT_LINK: https://github.com/ArrowOS-Devices/android_kernel_xiaomi_sm6250.git
-    PLATFORM: sm6250
+    KT_LINK: https://github.com/OnePlusOSS/android_kernel_msm-5.4_oneplus_sm6375.git
+    PLATFORM: sm6375
     KT_PATH: kernel/$OEM/$PLATFORM
+    HW_LINK: https://github.com/sungsong85/android_hardware_oneplus.git
+    HW_PATH: hardware/$OEM
+    CM_LINK: https://github.com/sungsong85/android_device_oneplus-sm6375-common.git
+    CM_PATH: device/oneplus/sm6375-common
     TARGET: bacon
     EXTRA_CMD: export SKIP_ABI_CHECKS=true
     LUNCH_COMBO: aosp_${DEVICE}-userdebug
@@ -45,6 +49,8 @@ task:
       - git clone $DT_LINK $DT_PATH
       - git clone $VT_LINK $VT_PATH
       - git clone $KT_LINK $KT_PATH
+      - git clone $HW_LINK $HW_PATH
+      - git clone $CM_LINK $CM_PATH
       - echo "============================"
       - echo "Syncing Complete!"
       - echo "============================"
