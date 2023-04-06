@@ -1,5 +1,5 @@
 env:
-    MANIFEST: repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs
+    MANIFEST: repo init -u https://github.com/LineageOS/android.git
     DEVICE: CPH2381
     OEM: oneplus
     DT_LINK: https://github.com/sungsong85/lineage_CPH2381.git
@@ -15,7 +15,7 @@ env:
     CM_PATH: device/oneplus/sm6375-common
     TARGET: bacon
     EXTRA_CMD: export SKIP_ABI_CHECKS=true
-    LUNCH_COMBO: aosp_${DEVICE}-userdebug
+    LUNCH_COMBO: lineage_${DEVICE}-userdebug
     OUTPUT: PixelExperience*.zip
 
 task:
@@ -33,9 +33,9 @@ task:
       - lsblk
       - ls -l -a -h 
   build-packages_script:
-      - cd~/
+      - cd ~/
       - git clone https://github.com/akhilnarang/scripts 
-      - cd scripts 
+      - cd ~/scripts 
       - ./setup/android_build_env.sh
   
   Sync_script:
@@ -44,8 +44,8 @@ task:
       - echo "============================"
       - mkdir -p ~/work
       - cd ~/work
-      - repo init --depth=1 -u $MANIFEST
-      - repo sync
+      - repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs
+      - repo sync -j4 --force-sync --no-tags --no-clone-bundle
       - git clone $DT_LINK $DT_PATH
       - git clone $VT_LINK $VT_PATH
       - git clone $KT_LINK $KT_PATH
